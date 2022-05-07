@@ -1,3 +1,6 @@
+body {
+  margin: 0;
+}
 .img-div {
   background-color: rgba(123, 72, 170, 0.747);
   height: 100%;
@@ -5,4 +8,8 @@
 }
 .main-section {
   height: 100vh;
+}
+.poe-img {
+  height: auto;
+  width: 100%;
 }
