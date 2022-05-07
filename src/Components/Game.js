@@ -16,7 +16,6 @@ export default function Game(props) {
 
   return (
     <main className="main-section">
-      <h2>Game section/img</h2>
       <div className="img-div" onClick={logCoords}>
         <img className="poe-img" src={poeitems} alt="poe uniques"></img>
       </div>

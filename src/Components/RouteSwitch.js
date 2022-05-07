@@ -5,11 +5,9 @@ import About from "./About";
 
 export default function RouteSwitch() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/game" element={<Game />} />
-        <Route path="/about" element={<About />} />
-      </Routes>
-    </BrowserRouter>
+    <Routes>
+      <Route path="/game" element={<Game />} />
+      <Route path="/about" element={<About />} />
+    </Routes>
   );
 }

@@ -1,0 +1,21 @@
+.main-nav {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border-bottom: solid 1px;
+  background-color: rgba(61, 61, 82, 0.849);
+  color: white;
+  font-family: "Poppins", sans-serif;
+  font-size: 22px;
+}
+.nav-list {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  list-style: none;
+  width: 20%;
+}
+a {
+  text-decoration: none;
+  color: white;
+}
