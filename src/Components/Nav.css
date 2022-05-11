@@ -2,11 +2,12 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
-  border-bottom: solid 1px;
+
   background-color: rgba(61, 61, 82, 0.849);
   color: white;
   font-family: "Poppins", sans-serif;
-  font-size: 22px;
+  font-size: 24px;
+  font-weight: 500;
 }
 .nav-list {
   display: flex;
@@ -18,4 +19,7 @@
 a {
   text-decoration: none;
   color: white;
+}
+a:hover {
+  color: #af6025;
 }

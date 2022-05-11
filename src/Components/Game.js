@@ -1,22 +1,21 @@
+import { render } from "@testing-library/react";
 import React from "react";
 import "./Game.css";
 import poeitems from "./images/poeitems.jpg";
+import Selector from "./Selector";
 
 export default function Game(props) {
-  function logCoords(e) {
-    const imgWidth = e.nativeEvent.target.width;
-    const imgHeight = e.nativeEvent.target.height;
-    const xCoord = e.nativeEvent.offsetX;
-    const yCoord = e.nativeEvent.offsetY;
-
-    const xPercent = Math.floor((xCoord * 100) / imgWidth);
-    const yPercent = Math.floor((yCoord * 100) / imgHeight);
-    console.log(xPercent, yPercent);
-  }
-
+  console.log(props.coords);
   return (
     <main className="main-section">
-      <div className="img-div" onClick={logCoords}>
+      {props.showSelector && <Selector coords={props.coords} />}
+      <div
+        className="img-div"
+        onClick={function (e) {
+          props.getCoords(e);
+          props.changeSelector();
+        }}
+      >
         <img className="poe-img" src={poeitems} alt="poe uniques"></img>
       </div>
     </main>

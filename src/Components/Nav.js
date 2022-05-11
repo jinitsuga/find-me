@@ -10,6 +10,9 @@ export default function Nav() {
         <Link to="/">
           <li>Home</li>
         </Link>
+        <Link to="/game">
+          <li>Game</li>
+        </Link>
         <Link to="/about">
           <li>About</li>
         </Link>
