@@ -8,6 +8,15 @@ export default function App() {
   const [coords, setCoords] = React.useState({ x: 0, y: 0 });
   const [showSelector, setShowSelector] = React.useState(false);
 
+  async function logItem(e) {
+    console.log(showSelector);
+    try {
+      const logger = await Promise.resolve(console.log(e.target.textContent));
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   function changeSelector() {
     console.log("megalul", showSelector);
     setShowSelector(!showSelector);
@@ -41,6 +50,7 @@ export default function App() {
         getCoords={getCoords}
         showSelector={showSelector}
         changeSelector={changeSelector}
+        logItem={logItem}
       />
     </div>
   );

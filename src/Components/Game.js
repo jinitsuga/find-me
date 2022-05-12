@@ -5,10 +5,11 @@ import poeitems from "./images/poeitems.jpg";
 import Selector from "./Selector";
 
 export default function Game(props) {
-  console.log(props.coords);
   return (
     <main className="main-section">
-      {props.showSelector && <Selector coords={props.coords} />}
+      {props.showSelector && (
+        <Selector coords={props.coords} logItem={props.logItem} />
+      )}
       <div
         className="img-div"
         onClick={function (e) {

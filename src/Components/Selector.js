@@ -2,8 +2,6 @@ import React from "react";
 import "./Selector.css";
 
 export default function Selector(props) {
-  console.log("selector lol", "lmao");
-
   const selectorStyle = {
     color: "white",
     position: "absolute",
@@ -14,9 +12,15 @@ export default function Selector(props) {
   return (
     <div className="selector" style={selectorStyle}>
       <ul className="select-list">
-        <li className="select-option1">Skullhelm</li>
-        <li className="select-option2">Tabula Rasa</li>
-        <li className="select-option3">Clayshaper</li>
+        <li className="select-option1" onClick={props.logItem}>
+          Skullhelm
+        </li>
+        <li className="select-option2" onClick={props.logItem}>
+          Tabula Rasa
+        </li>
+        <li className="select-option3" onClick={props.logItem}>
+          Clayshaper
+        </li>
       </ul>
     </div>
   );

@@ -2,10 +2,12 @@ import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Game from "./Game";
 import About from "./About";
+import Home from "./Home";
 
 export default function RouteSwitch(props) {
   return (
     <Routes>
+      <Route path="/" element={<Home />} />
       <Route
         path="/game"
         element={
@@ -15,6 +17,7 @@ export default function RouteSwitch(props) {
             coords={props.coords}
             showSelector={props.showSelector}
             changeSelector={props.changeSelector}
+            logItem={props.logItem}
           />
         }
       />
