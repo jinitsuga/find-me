@@ -2,7 +2,9 @@ import React from "react";
 import RouteSwitch from "./Components/RouteSwitch";
 import Nav from "./Components/Nav.js";
 import Selector from "./Components/Selector";
-import { BrowserRouter, Route } from "react-router-dom";
+import { getFirestore, collection, addDoc, getDocs } from "firebase/firestore";
+import { initializeApp } from "firebase/app";
+import firebaseConfig from "./Components/firebase-config";
 
 export default function App() {
   const [coords, setCoords] = React.useState({ x: 0, y: 0 });
@@ -38,7 +40,7 @@ export default function App() {
 
     const xPercent = Math.floor((xCoord * 100) / imgWidth);
     const yPercent = Math.floor((yCoord * 100) / imgHeight);
-    console.log(xPercent, yPercent);
+    console.log("X: " + xPercent, "Y: " + yPercent);
   }
 
   return (
@@ -48,6 +50,7 @@ export default function App() {
         coords={coords}
         selector={<Selector coords={coords} />}
         getCoords={getCoords}
+        getPercentCoords={getPercentCoords}
         showSelector={showSelector}
         changeSelector={changeSelector}
         logItem={logItem}
@@ -55,3 +58,13 @@ export default function App() {
     </div>
   );
 }
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+console.log(db);
+async function getItems(db) {
+  const listOfItems = collection(db, "items");
+  const itemsSnap = await getDocs(listOfItems);
+  const itemList = itemsSnap.docs.map((doc) => doc.data());
+  return itemList;
+}
+console.log(getItems(db));

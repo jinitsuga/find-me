@@ -14,6 +14,7 @@ export default function RouteSwitch(props) {
           <Game
             selector={props.selector}
             getCoords={props.getCoords}
+            getPercentCoords={props.getPercentCoords}
             coords={props.coords}
             showSelector={props.showSelector}
             changeSelector={props.changeSelector}
