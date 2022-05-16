@@ -7,15 +7,15 @@ import Selector from "./Selector";
 export default function Game(props) {
   return (
     <main className="main-section">
-      {/* {props.showSelector && (
+      {props.showSelector && (
         <Selector coords={props.coords} logItem={props.logItem} />
-      )} */}
+      )}
       <div
         className="img-div"
         onClick={function (e) {
           props.getCoords(e);
           props.getPercentCoords(e);
-          // props.changeSelector();
+          props.changeSelector();
         }}
       >
         <img className="poe-img" src={poeitems} alt="poe uniques"></img>

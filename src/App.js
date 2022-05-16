@@ -5,22 +5,49 @@ import Selector from "./Components/Selector";
 import { getFirestore, collection, addDoc, getDocs } from "firebase/firestore";
 import { initializeApp } from "firebase/app";
 import firebaseConfig from "./Components/firebase-config";
+import { calculateNewValue } from "@testing-library/user-event/dist/utils";
+const app = initializeApp(firebaseConfig);
+const database = getFirestore(app);
 
 export default function App() {
+  const [uniques, setUniques] = React.useState([]);
   const [coords, setCoords] = React.useState({ x: 0, y: 0 });
+  const [percentCoords, setPercentCoords] = React.useState({ x: 0, y: 0 });
   const [showSelector, setShowSelector] = React.useState(false);
 
-  async function logItem(e) {
-    console.log(showSelector);
-    try {
-      const logger = await Promise.resolve(console.log(e.target.textContent));
-    } catch (error) {
-      console.log(error);
+  // Firebase interaction -  extracting the list of items to find and their coordinates on the image.
+  // only on app start through useEffect hook
+
+  async function getItems(database) {
+    const listOfItems = collection(database, "items");
+    const itemsSnap = await getDocs(listOfItems);
+    const itemList = itemsSnap.docs.map((doc) => doc.data());
+    return itemList;
+  }
+  React.useEffect(() => {
+    getItems(database).then(setUniques);
+  }, []);
+
+  // ---------------- !! ----------------------
+
+  function logItem(e) {
+    const item = uniques.find(
+      (element) => element.name === e.target.textContent
+    );
+    console.log(item);
+    if (
+      percentCoords.x <= item.xMax &&
+      percentCoords.x >= item.xMin &&
+      percentCoords.y <= item.yMax &&
+      percentCoords.y >= item.yMin
+    ) {
+      console.log(item.name);
+    } else {
+      console.log("try again lol");
     }
   }
 
   function changeSelector() {
-    console.log("megalul", showSelector);
     setShowSelector(!showSelector);
   }
   function getCoords(e) {
@@ -40,7 +67,7 @@ export default function App() {
 
     const xPercent = Math.floor((xCoord * 100) / imgWidth);
     const yPercent = Math.floor((yCoord * 100) / imgHeight);
-    console.log("X: " + xPercent, "Y: " + yPercent);
+    setPercentCoords({ x: xPercent, y: yPercent });
   }
 
   return (
@@ -58,13 +85,3 @@ export default function App() {
     </div>
   );
 }
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
-console.log(db);
-async function getItems(db) {
-  const listOfItems = collection(db, "items");
-  const itemsSnap = await getDocs(listOfItems);
-  const itemList = itemsSnap.docs.map((doc) => doc.data());
-  return itemList;
-}
-console.log(getItems(db));
