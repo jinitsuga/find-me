@@ -2,6 +2,7 @@ import React from "react";
 import "./Selector.css";
 
 export default function Selector(props) {
+  const items = props.uniques.map((item) => <span>{item.name}</span>);
   const selectorStyle = {
     color: "white",
     position: "absolute",
@@ -13,13 +14,13 @@ export default function Selector(props) {
     <div className="selector" style={selectorStyle}>
       <ul className="select-list">
         <li className="select-option1" onClick={props.logItem}>
-          Skullhelm
+          {items[0]}
         </li>
         <li className="select-option2" onClick={props.logItem}>
-          Tabula Rasa
+          {items[1]}
         </li>
         <li className="select-option3" onClick={props.logItem}>
-          Clayshaper
+          {items[2]}
         </li>
       </ul>
     </div>

@@ -2,7 +2,7 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
-
+  height: 100px;
   background-color: rgba(61, 61, 82, 0.849);
   color: white;
   font-family: "Poppins", sans-serif;
@@ -22,4 +22,13 @@ a {
 }
 a:hover {
   color: #af6025;
+  border-bottom: solid 3px;
+}
+.find-these-nav {
+  font-size: 22px;
+  letter-spacing: -1px;
+  color: aqua;
+}
+.findme-nav {
+  margin: 15px;
 }

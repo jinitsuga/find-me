@@ -34,7 +34,7 @@ export default function App() {
     const item = uniques.find(
       (element) => element.name === e.target.textContent
     );
-    console.log(item);
+
     if (
       percentCoords.x <= item.xMax &&
       percentCoords.x >= item.xMin &&
@@ -72,7 +72,7 @@ export default function App() {
 
   return (
     <div className="App">
-      <Nav />
+      <Nav uniques={uniques} />
       <RouteSwitch
         coords={coords}
         selector={<Selector coords={coords} />}
@@ -81,6 +81,7 @@ export default function App() {
         showSelector={showSelector}
         changeSelector={changeSelector}
         logItem={logItem}
+        uniques={uniques}
       />
     </div>
   );

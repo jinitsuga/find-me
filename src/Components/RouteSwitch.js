@@ -19,6 +19,7 @@ export default function RouteSwitch(props) {
             showSelector={props.showSelector}
             changeSelector={props.changeSelector}
             logItem={props.logItem}
+            uniques={props.uniques}
           />
         }
       />

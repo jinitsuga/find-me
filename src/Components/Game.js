@@ -8,7 +8,11 @@ export default function Game(props) {
   return (
     <main className="main-section">
       {props.showSelector && (
-        <Selector coords={props.coords} logItem={props.logItem} />
+        <Selector
+          coords={props.coords}
+          logItem={props.logItem}
+          uniques={props.uniques}
+        />
       )}
       <div
         className="img-div"
