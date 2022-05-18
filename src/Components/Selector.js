@@ -2,6 +2,7 @@ import React from "react";
 import "./Selector.css";
 
 export default function Selector(props) {
+  // automate the arrangement of selector options according to the items in 'uniques' state.
   const items = props.uniques.map((item) => <span>{item.name}</span>);
   const selectorStyle = {
     color: "white",
