@@ -41,9 +41,8 @@ export default function App() {
       percentCoords.y <= item.yMax &&
       percentCoords.y >= item.yMin
     ) {
-      console.log(item);
+      // Changes item's "found" prop to 'true' + changes item style in the navbar
       setItemToFound(item);
-      console.log(uniques);
     } else {
       console.log("try again lol");
     }
@@ -53,6 +52,7 @@ export default function App() {
     const index = uniques.findIndex((unique) => unique.name === item.name);
     const myUniques = uniques.slice();
     myUniques[index].found = true;
+    myUniques.splice(index, 1);
     setUniques(myUniques);
   }
   function changeSelector() {
@@ -77,13 +77,10 @@ export default function App() {
     const yPercent = Math.floor((yCoord * 100) / imgHeight);
     setPercentCoords({ x: xPercent, y: yPercent });
   }
-  const foundStyle = {
-    color: "black",
-    textDecoration: "line-through",
-  };
+
   return (
     <div className="App">
-      <Nav uniques={uniques} style={foundStyle} />
+      <Nav uniques={uniques} />
       <RouteSwitch
         coords={coords}
         selector={<Selector coords={coords} />}

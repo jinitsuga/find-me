@@ -3,11 +3,14 @@ import "./Nav.css";
 import { Link } from "react-router-dom";
 import uniqid from "uniqid";
 export default function Nav(props) {
+  // Feels like dirty code - couldn't think of a better way for conditionally styling these.
+
   const items = props.uniques.map((item) => (
     <span className="findme-nav" key={uniqid()}>
       {item.name}
     </span>
   ));
+
   return (
     <nav className="main-nav">
       <div className="logo-container">Find me</div>
