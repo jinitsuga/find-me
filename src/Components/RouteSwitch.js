@@ -7,7 +7,7 @@ import Home from "./Home";
 export default function RouteSwitch(props) {
   return (
     <Routes>
-      <Route path="/" element={<Home />} />
+      <Route path="/" element={<Home startClock={props.startClock} />} />
       <Route
         path="/game"
         element={

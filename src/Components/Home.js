@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-export default function Home() {
+export default function Home(props) {
   return (
     <section>
       <div className="home-section">
@@ -10,7 +10,9 @@ export default function Home() {
           to find the listed items in the lowest amount of time possible!{" "}
         </p>
         <Link to="/game">
-          <button className="start-btn">Start</button>
+          <button className="start-btn" onClick={props.startClock}>
+            Start
+          </button>
         </Link>
       </div>
     </section>

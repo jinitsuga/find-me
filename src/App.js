@@ -14,6 +14,7 @@ export default function App() {
   const [coords, setCoords] = React.useState({ x: 0, y: 0 });
   const [percentCoords, setPercentCoords] = React.useState({ x: 0, y: 0 });
   const [showSelector, setShowSelector] = React.useState(false);
+  const [timerStart, setTimerStart] = React.useState(false);
 
   // Firebase interaction -  extracting the list of items to find and their coordinates on the image.
   // only on app start through useEffect hook
@@ -34,7 +35,7 @@ export default function App() {
     const item = uniques.find(
       (element) => element.name === e.target.textContent
     );
-
+    if (item === undefined) return;
     if (
       percentCoords.x <= item.xMax &&
       percentCoords.x >= item.xMin &&
@@ -51,6 +52,7 @@ export default function App() {
   function setItemToFound(item) {
     const index = uniques.findIndex((unique) => unique.name === item.name);
     const myUniques = uniques.slice();
+    // Should change to true in the backend (db) and just remove it from the State
     myUniques[index].found = true;
     myUniques.splice(index, 1);
     setUniques(myUniques);
@@ -78,9 +80,13 @@ export default function App() {
     setPercentCoords({ x: xPercent, y: yPercent });
   }
 
+  // clock starting func
+  function startClock() {
+    setTimerStart(true);
+  }
   return (
     <div className="App">
-      <Nav uniques={uniques} />
+      <Nav uniques={uniques} timerStart={timerStart} />
       <RouteSwitch
         coords={coords}
         selector={<Selector coords={coords} />}
@@ -90,6 +96,7 @@ export default function App() {
         changeSelector={changeSelector}
         logItem={logItem}
         uniques={uniques}
+        startClock={startClock}
       />
     </div>
   );

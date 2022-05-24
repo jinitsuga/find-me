@@ -20,10 +20,10 @@ export default function Selector(props) {
           {!items[0] ? "found" : items[0]}
         </li>
         <li className="select-option2" onClick={props.logItem}>
-          {items[1]}
+          {!items[1] ? "found" : items[1]}
         </li>
         <li className="select-option3" onClick={props.logItem}>
-          {items[2]}
+          {!items[2] ? "found" : items[2]}
         </li>
       </ul>
     </div>
