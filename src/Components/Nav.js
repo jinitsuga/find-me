@@ -18,7 +18,11 @@ export default function Nav(props) {
       <div className="logo-container">Find me</div>
       <div className="find-these-nav">{items}</div>
       <div className="nav-clock">
-        <Clock timerStart={props.timerStart} />
+        <Clock
+          timerStart={props.timerStart}
+          timer={props.timer}
+          setTimer={props.setTimer}
+        />
       </div>
       <ul className="nav-list">
         <Link to="/">

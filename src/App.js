@@ -15,7 +15,7 @@ export default function App() {
   const [percentCoords, setPercentCoords] = React.useState({ x: 0, y: 0 });
   const [showSelector, setShowSelector] = React.useState(false);
   const [timerStart, setTimerStart] = React.useState(false);
-
+  const [timer, setTimer] = React.useState({ mins: 0, seconds: 0 });
   // Firebase interaction -  extracting the list of items to find and their coordinates on the image.
   // only on app start through useEffect hook
 
@@ -42,7 +42,7 @@ export default function App() {
       percentCoords.y <= item.yMax &&
       percentCoords.y >= item.yMin
     ) {
-      // Changes item's "found" prop to 'true' + changes item style in the navbar
+      // Changes item's "found" prop to 'true' + removes item from the navbar(and state)
       setItemToFound(item);
     } else {
       console.log("try again lol");
@@ -56,19 +56,24 @@ export default function App() {
     myUniques[index].found = true;
     myUniques.splice(index, 1);
     setUniques(myUniques);
+    console.log(uniques.length);
+    if (uniques.length <= 1) {
+      console.log(timer.seconds);
+      alert(
+        "You won in " + timer.mins + " minutes " + timer.seconds + " seconds"
+      );
+    }
   }
   function changeSelector() {
     setShowSelector(!showSelector);
   }
   function getCoords(e) {
-    // const imgWidth = e.nativeEvent.target.width;
-    // const imgHeight = e.nativeEvent.target.height;
     const xCoord = e.nativeEvent.offsetX;
     const yCoord = e.nativeEvent.offsetY;
     setCoords({ x: xCoord, y: yCoord });
   }
 
-  // Turn coords into % of each measure, so it adapts to viewport size.
+  // Turn coords into % of each measure, adapting to viewport size.
   function getPercentCoords(e) {
     const imgWidth = e.nativeEvent.target.width;
     const imgHeight = e.nativeEvent.target.height;
@@ -84,9 +89,27 @@ export default function App() {
   function startClock() {
     setTimerStart(true);
   }
+  function updateLocalTimer() {
+    localStorage.setItem("time", timer.seconds);
+    let sessionTime = localStorage.getItem("time");
+    // if (sessionTime ) {
+    //   setTimer((oldTimer) => {
+    //     return { ...oldTimer, seconds: sessionTime };
+    //   });
+    // } else {
+
+    // }
+    console.log(sessionTime);
+  }
+  updateLocalTimer();
   return (
     <div className="App">
-      <Nav uniques={uniques} timerStart={timerStart} />
+      <Nav
+        uniques={uniques}
+        timerStart={timerStart}
+        timer={timer}
+        setTimer={setTimer}
+      />
       <RouteSwitch
         coords={coords}
         selector={<Selector coords={coords} />}
