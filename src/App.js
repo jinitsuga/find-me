@@ -15,7 +15,10 @@ export default function App() {
   const [percentCoords, setPercentCoords] = React.useState({ x: 0, y: 0 });
   const [showSelector, setShowSelector] = React.useState(false);
   const [timerStart, setTimerStart] = React.useState(false);
-  const [timer, setTimer] = React.useState({ mins: 0, seconds: 0 });
+  const [timer, setTimer] = React.useState({
+    mins: 0,
+    seconds: localStorage.getItem("time"),
+  });
   // Firebase interaction -  extracting the list of items to find and their coordinates on the image.
   // only on app start through useEffect hook
 
@@ -56,9 +59,8 @@ export default function App() {
     myUniques[index].found = true;
     myUniques.splice(index, 1);
     setUniques(myUniques);
-    console.log(uniques.length);
+
     if (uniques.length <= 1) {
-      console.log(timer.seconds);
       alert(
         "You won in " + timer.mins + " minutes " + timer.seconds + " seconds"
       );
@@ -89,19 +91,25 @@ export default function App() {
   function startClock() {
     setTimerStart(true);
   }
-  function updateLocalTimer() {
+  // Local storage interaction -- maintaing timer on page refresh
+  function updateTimer() {
     localStorage.setItem("time", timer.seconds);
-    let sessionTime = localStorage.getItem("time");
-    // if (sessionTime ) {
-    //   setTimer((oldTimer) => {
-    //     return { ...oldTimer, seconds: sessionTime };
-    //   });
-    // } else {
-
-    // }
-    console.log(sessionTime);
   }
-  updateLocalTimer();
+  React.useEffect(() => {
+    setTimer((oldTimer) => {
+      return { ...oldTimer, seconds: Number(localStorage.getItem("time")) };
+    });
+    console.log(timer);
+  }, []);
+
+  function testStorage() {
+    let previousTime = localStorage.getItem("time");
+    setTimer((oldTimer) => {
+      return { ...oldTimer, seconds: previousTime };
+    });
+    console.log(localStorage.getItem("time"));
+  }
+  updateTimer();
   return (
     <div className="App">
       <Nav

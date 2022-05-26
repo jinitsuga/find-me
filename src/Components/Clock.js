@@ -3,16 +3,20 @@ import "./Clock.css";
 export default function Clock(props) {
   const minutes = Math.floor(props.timer.seconds / 60);
   const seconds = props.timer.seconds % 60;
+
   React.useEffect(() => {
     //let interval = null;
 
     if (props.timerStart) {
-      setInterval(updateSeconds, 1000);
+      setInterval(function () {
+        updateSeconds();
+      }, 1000);
       // setInterval(updateMinutes, 60000);
     }
   }, [props.timerStart]);
 
   function updateSeconds() {
+    console.log(localStorage.getItem("time"));
     props.setTimer((oldTimer) => {
       return { ...oldTimer, seconds: oldTimer.seconds + 1 };
     });
@@ -23,6 +27,7 @@ export default function Clock(props) {
       return { ...oldTimer, mins: oldTimer.mins + 1 };
     });
   }
+
   return (
     <div className="clock-container">
       <span className="time"> Time: </span>
