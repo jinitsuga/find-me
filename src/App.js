@@ -15,6 +15,7 @@ export default function App() {
   const [percentCoords, setPercentCoords] = React.useState({ x: 0, y: 0 });
   const [showSelector, setShowSelector] = React.useState(false);
   const [timerStart, setTimerStart] = React.useState(false);
+  const [gameStarted, setGameStarted] = React.useState(false);
   const [timer, setTimer] = React.useState({
     mins: 0,
     seconds: localStorage.getItem("time"),
@@ -53,11 +54,12 @@ export default function App() {
   }
   // Probably overly-complex function to change item's 'found' prop to true.
   function setItemToFound(item) {
-    const index = uniques.findIndex((unique) => unique.name === item.name);
-    const myUniques = uniques.slice();
-    myUniques[index].found = true;
-    myUniques.splice(index, 1);
-    setUniques(myUniques);
+    setUniques((oldUniques) =>
+      oldUniques.map((unique) =>
+        unique.name !== item.name ? unique : { ...unique, found: true }
+      )
+    );
+    console.log(uniques);
     // win condition - stopping and resetting timer.
     if (uniques.length <= 1) {
       localStorage.setItem("time", 0);
@@ -89,10 +91,11 @@ export default function App() {
     setPercentCoords({ x: xPercent, y: yPercent });
   }
 
-  // clock starting func
+  // clock starting functionality
   function startClock() {
     setTimerStart(true);
   }
+
   // Local storage interaction -- maintaing timer on page refresh
   function updateTimer() {
     localStorage.setItem("time", timer.seconds);
@@ -104,13 +107,12 @@ export default function App() {
     console.log(timer);
   }, []);
 
-  function testStorage() {
-    let previousTime = localStorage.getItem("time");
-    setTimer((oldTimer) => {
-      return { ...oldTimer, seconds: previousTime };
-    });
-    console.log(localStorage.getItem("time"));
-  }
+  React.useEffect(() => {
+    if (Number(localStorage.getItem("time")) > 0) {
+      setGameStarted(true);
+    }
+  });
+
   updateTimer();
   return (
     <div className="App">
@@ -119,8 +121,10 @@ export default function App() {
         timerStart={timerStart}
         timer={timer}
         setTimer={setTimer}
+        gameStarted={gameStarted}
       />
       <RouteSwitch
+        startClock={startClock}
         coords={coords}
         selector={<Selector coords={coords} />}
         getCoords={getCoords}
@@ -129,7 +133,8 @@ export default function App() {
         changeSelector={changeSelector}
         logItem={logItem}
         uniques={uniques}
-        startClock={startClock}
+        setTimerStart={setTimerStart}
+        timerStart={timerStart}
       />
     </div>
   );

@@ -7,12 +7,12 @@ export default function Clock(props) {
   React.useEffect(() => {
     //let interval = null;
 
-    if (props.timerStart === true) {
+    if (props.timerStart === true || props.gameStarted === true) {
       let startClock = setInterval(function () {
         updateSeconds();
       }, 1000);
     }
-  }, [props.timerStart]);
+  }, [props.timerStart, props.gameStarted]);
 
   function updateSeconds() {
     if (!props.uniques.every((item) => item.found == true)) {

@@ -7,8 +7,9 @@ export default function Nav(props) {
   // Feels like dirty code - couldn't think of a better way for conditionally styling these.
   // IDEA - GIVE NAV Its own State to track uniques, so I can remove them only from the nav list
   // this way it won't affect the Selector list
+
   const items = props.uniques.map((item) => (
-    <span className="findme-nav" key={uniqid()}>
+    <span className={`findme-nav ${item.found ? "found" : ""}`} key={uniqid()}>
       {item.name}
     </span>
   ));
@@ -23,15 +24,16 @@ export default function Nav(props) {
           timer={props.timer}
           setTimer={props.setTimer}
           uniques={props.uniques}
+          gameStarted={props.gameStarted}
         />
       </div>
       <ul className="nav-list">
         <Link to="/">
           <li>Home</li>
         </Link>
-        <Link to="/game">
+        {/* <Link to="/game">
           <li>Game</li>
-        </Link>
+        </Link> */}
         <Link to="/about">
           <li>About</li>
         </Link>

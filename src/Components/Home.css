@@ -1,0 +1,31 @@
+section {
+  color: rgb(255, 255, 255);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 100px;
+  font-family: "Poppins", sans-serif;
+  font-size: 24px;
+  font-weight: 500;
+}
+.home-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 35%;
+  background-color: rgba(61, 61, 82, 0.849);
+  padding: 25px;
+  border-radius: 2px;
+}
+.teal-tag {
+  color: aqua;
+}
+.start-btn {
+  border: none;
+  border-radius: 4px;
+  height: 50px;
+  width: 75px;
+  font-size: 18px;
+  font-weight: 500;
+}

@@ -20,7 +20,7 @@ a {
   text-decoration: none;
   color: white;
 }
-a:hover {
+.nav-list > a:hover {
   color: #af6025;
   border-bottom: solid 3px;
 }
@@ -31,4 +31,8 @@ a:hover {
 }
 .findme-nav {
   margin: 15px;
+}
+.found {
+  text-decoration: line-through;
+  color: black;
 }

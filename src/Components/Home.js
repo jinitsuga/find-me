@@ -1,13 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
+import "./Home.css";
 export default function Home(props) {
   return (
     <section>
       <div className="home-section">
         <p className="home-text">
-          When you're ready to start, click the button. A timer will start. Try
-          to find the listed items in the lowest amount of time possible!{" "}
+          When you're ready to begin, click the button and a timer will start.
+          Try to find the listed items in{" "}
+          <span className="teal-tag">teal </span>in the lowest amount of time
+          possible!{" "}
         </p>
         <Link to="/game">
           <button className="start-btn" onClick={props.startClock}>
