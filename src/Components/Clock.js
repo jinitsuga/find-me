@@ -7,19 +7,19 @@ export default function Clock(props) {
   React.useEffect(() => {
     //let interval = null;
 
-    if (props.timerStart) {
-      setInterval(function () {
+    if (props.timerStart === true) {
+      let startClock = setInterval(function () {
         updateSeconds();
       }, 1000);
-      // setInterval(updateMinutes, 60000);
     }
   }, [props.timerStart]);
 
   function updateSeconds() {
-    console.log(localStorage.getItem("time"));
-    props.setTimer((oldTimer) => {
-      return { ...oldTimer, seconds: oldTimer.seconds + 1 };
-    });
+    if (!props.uniques.every((item) => item.found == true)) {
+      props.setTimer((oldTimer) => {
+        return { ...oldTimer, seconds: oldTimer.seconds + 1 };
+      });
+    } else return;
   }
 
   function updateMinutes() {

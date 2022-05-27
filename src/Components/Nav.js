@@ -22,6 +22,7 @@ export default function Nav(props) {
           timerStart={props.timerStart}
           timer={props.timer}
           setTimer={props.setTimer}
+          uniques={props.uniques}
         />
       </div>
       <ul className="nav-list">

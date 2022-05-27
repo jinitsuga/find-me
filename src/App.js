@@ -55,12 +55,14 @@ export default function App() {
   function setItemToFound(item) {
     const index = uniques.findIndex((unique) => unique.name === item.name);
     const myUniques = uniques.slice();
-    // Should change to true in the backend (db) and just remove it from the State
     myUniques[index].found = true;
     myUniques.splice(index, 1);
     setUniques(myUniques);
-
+    // win condition - stopping and resetting timer.
     if (uniques.length <= 1) {
+      localStorage.setItem("time", 0);
+      setTimer({ minutes: 0, seconds: 0 });
+      setTimerStart(false);
       alert(
         "You won in " + timer.mins + " minutes " + timer.seconds + " seconds"
       );
