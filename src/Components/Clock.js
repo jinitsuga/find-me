@@ -11,15 +11,18 @@ export default function Clock(props) {
       let startClock = setInterval(function () {
         updateSeconds();
       }, 1000);
+      console.log(startClock);
     }
   }, [props.timerStart, props.gameStarted]);
 
   function updateSeconds() {
-    if (!props.uniques.every((item) => item.found == true)) {
+    if (props.uniques.every((item) => item.found == true)) {
+      localStorage.setItem("time", 0);
+    } else {
       props.setTimer((oldTimer) => {
         return { ...oldTimer, seconds: oldTimer.seconds + 1 };
       });
-    } else return;
+    }
   }
 
   function updateMinutes() {

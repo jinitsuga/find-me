@@ -12,7 +12,9 @@ export default function Selector(props) {
     top: props.coords.y + "px",
     left: props.coords.x + "px",
   };
-
+  React.useEffect(() => {
+    props.checkForWin();
+  }, [props.uniques]);
   return (
     <div className="selector" style={selectorStyle}>
       <ul className="select-list">

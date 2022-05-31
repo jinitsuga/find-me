@@ -8,6 +8,7 @@ export default function RouteSwitch(props) {
   return (
     <React.Fragment>
       <Routes>
+        {/* Any route leads to Home if the clock hasn't started (to prevent looking at img before timer starts) */}
         <Route path="/" element={<Home startClock={props.startClock} />} />
         {props.timerStart && (
           <Route
@@ -25,12 +26,14 @@ export default function RouteSwitch(props) {
                 startClock={props.startClock}
                 setTimerStart={props.setTimerStart}
                 timerStart={props.timerStart}
+                checkForWin={props.checkForWin}
               />
             }
           />
         )}
 
         <Route path="/about" element={<About />} />
+        {/* Making it so any route that isn't specified, leads to Home */}
         <Route path="*" element={<Navigate to="/" replace />}></Route>
       </Routes>
     </React.Fragment>

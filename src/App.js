@@ -16,9 +16,10 @@ export default function App() {
   const [showSelector, setShowSelector] = React.useState(false);
   const [timerStart, setTimerStart] = React.useState(false);
   const [gameStarted, setGameStarted] = React.useState(false);
+  const [isGameWon, setIsGameWon] = React.useState(false);
   const [timer, setTimer] = React.useState({
     mins: 0,
-    seconds: localStorage.getItem("time"),
+    seconds: 0,
   });
   // Firebase interaction -  extracting the list of items to find and their coordinates on the image.
   // only on app start through useEffect hook
@@ -46,7 +47,7 @@ export default function App() {
       percentCoords.y <= item.yMax &&
       percentCoords.y >= item.yMin
     ) {
-      // Changes item's "found" prop to 'true' + removes item from the navbar(and state)
+      // Changes item's "found" prop to 'true'
       setItemToFound(item);
     } else {
       console.log("try again lol");
@@ -59,16 +60,9 @@ export default function App() {
         unique.name !== item.name ? unique : { ...unique, found: true }
       )
     );
-    console.log(uniques);
+    console.log(uniques.every((item) => item.found == true));
     // win condition - stopping and resetting timer.
-    if (uniques.length <= 1) {
-      localStorage.setItem("time", 0);
-      setTimer({ minutes: 0, seconds: 0 });
-      setTimerStart(false);
-      alert(
-        "You won in " + timer.mins + " minutes " + timer.seconds + " seconds"
-      );
-    }
+    checkForWin();
   }
   function changeSelector() {
     setShowSelector(!showSelector);
@@ -107,13 +101,23 @@ export default function App() {
     console.log(timer);
   }, []);
 
-  React.useEffect(() => {
-    if (Number(localStorage.getItem("time")) > 0) {
-      setGameStarted(true);
+  // React.useEffect(() => {
+  //   if (Number(localStorage.getItem("time")) > 0) {
+  //     setGameStarted(true);
+  //   }
+  // });
+  function checkForWin() {
+    if (uniques.every((item) => item.found == true)) {
+      setTimer({ minutes: 0, seconds: 0 });
+      setTimerStart(false);
+      setGameStarted(false);
+      setIsGameWon(true);
+      console.log("grats gamer");
     }
-  });
+  }
 
   updateTimer();
+
   return (
     <div className="App">
       <Nav
@@ -135,6 +139,7 @@ export default function App() {
         uniques={uniques}
         setTimerStart={setTimerStart}
         timerStart={timerStart}
+        checkForWin={checkForWin}
       />
     </div>
   );

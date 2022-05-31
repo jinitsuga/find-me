@@ -4,10 +4,7 @@ import { Link } from "react-router-dom";
 import uniqid from "uniqid";
 import Clock from "./Clock";
 export default function Nav(props) {
-  // Feels like dirty code - couldn't think of a better way for conditionally styling these.
-  // IDEA - GIVE NAV Its own State to track uniques, so I can remove them only from the nav list
-  // this way it won't affect the Selector list
-
+  // Auto rendering item names on the Nav from the DB
   const items = props.uniques.map((item) => (
     <span className={`findme-nav ${item.found ? "found" : ""}`} key={uniqid()}>
       {item.name}

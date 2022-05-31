@@ -12,6 +12,7 @@ export default function Game(props) {
           coords={props.coords}
           logItem={props.logItem}
           uniques={props.uniques}
+          checkForWin={props.checkForWin}
         />
       )}
       <div
