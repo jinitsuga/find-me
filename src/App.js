@@ -36,6 +36,8 @@ export default function App() {
 
   // ---------------- !! ----------------------
   // Saving game status in localStorage to avoid resets through page refresh
+
+  // COMMENT OUT THE LINE BELOW TO PREVENT REFRESH RESTART + add condition to timer start btn in Home component
   localStorage.setItem("gameWon", isGameWon);
 
   function logItem(e) {
@@ -55,7 +57,7 @@ export default function App() {
       console.log("try again lol");
     }
   }
-  // Probably overly-complex function to change item's 'found' prop to true.
+
   function setItemToFound(item) {
     setUniques((oldUniques) =>
       oldUniques.map((unique) =>
@@ -112,10 +114,13 @@ export default function App() {
   // });
   function checkForWin() {
     if (uniques.every((item) => item.found == true)) {
-      setTimer({ minutes: 0, seconds: 0 });
+      localStorage.setItem("time", timer.seconds);
+      //setTimer({ minutes: 0, seconds: 0 });
       setTimerStart(false);
       setGameStarted(false);
       setIsGameWon(true);
+      localStorage.setItem("gameWon", isGameWon);
+      localStorage.setItem("playerTime", timer.seconds);
       console.log("grats gamer");
     }
   }

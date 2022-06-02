@@ -3,6 +3,7 @@ import "./Nav.css";
 import { Link } from "react-router-dom";
 import uniqid from "uniqid";
 import Clock from "./Clock";
+
 export default function Nav(props) {
   // Auto rendering item names on the Nav from the DB
   const items = props.uniques.map((item) => (

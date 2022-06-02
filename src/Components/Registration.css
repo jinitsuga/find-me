@@ -1,0 +1,16 @@
+form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  flex-direction: column;
+  border-radius: 5px;
+  background-color: rgba(61, 61, 82, 0.849);
+  padding: 20px;
+}
+.player-name {
+  margin-top: 15px;
+  height: 45px;
+  width: 60%;
+  margin-bottom: 15px;
+}

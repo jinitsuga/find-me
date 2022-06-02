@@ -26,6 +26,12 @@ section {
   border-radius: 4px;
   height: 50px;
   width: 75px;
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 500;
+}
+.start-btn:hover {
+  color: white;
+  background-color: #af6025;
+  transform: scale(1.05);
+  font-weight: 700;
 }
