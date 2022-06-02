@@ -35,6 +35,8 @@ export default function App() {
   }, []);
 
   // ---------------- !! ----------------------
+  // Saving game status in localStorage to avoid resets through page refresh
+  localStorage.setItem("gameWon", isGameWon);
 
   function logItem(e) {
     const item = uniques.find(
@@ -60,7 +62,7 @@ export default function App() {
         unique.name !== item.name ? unique : { ...unique, found: true }
       )
     );
-    console.log(uniques.every((item) => item.found == true));
+
     // win condition - stopping and resetting timer.
     checkForWin();
   }
@@ -85,9 +87,12 @@ export default function App() {
     setPercentCoords({ x: xPercent, y: yPercent });
   }
 
-  // clock starting functionality
+  // clock functionality
   function startClock() {
     setTimerStart(true);
+  }
+  function stopTimer() {
+    setTimerStart(false);
   }
 
   // Local storage interaction -- maintaing timer on page refresh
@@ -98,7 +103,6 @@ export default function App() {
     setTimer((oldTimer) => {
       return { ...oldTimer, seconds: Number(localStorage.getItem("time")) };
     });
-    console.log(timer);
   }, []);
 
   // React.useEffect(() => {

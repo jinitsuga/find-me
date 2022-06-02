@@ -1,23 +1,28 @@
+import { clear } from "@testing-library/user-event/dist/clear";
 import React from "react";
 import "./Clock.css";
 export default function Clock(props) {
   const minutes = Math.floor(props.timer.seconds / 60);
   const seconds = props.timer.seconds % 60;
 
+  let clockInterval;
   React.useEffect(() => {
     //let interval = null;
 
-    if (props.timerStart === true || props.gameStarted === true) {
-      let startClock = setInterval(function () {
-        updateSeconds();
-      }, 1000);
-      console.log(startClock);
+    if (
+      props.timerStart === true &&
+      localStorage.getItem("gameWon") === "false"
+    ) {
+      if (!clockInterval) {
+        clockInterval = setInterval(updateSeconds, 1000);
+      }
     }
   }, [props.timerStart, props.gameStarted]);
 
   function updateSeconds() {
-    if (props.uniques.every((item) => item.found == true)) {
-      localStorage.setItem("time", 0);
+    if (localStorage.getItem("gameWon") === "true") {
+      clearInterval(clockInterval);
+      console.log("zulul");
     } else {
       props.setTimer((oldTimer) => {
         return { ...oldTimer, seconds: oldTimer.seconds + 1 };
