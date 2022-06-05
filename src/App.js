@@ -119,7 +119,7 @@ export default function App() {
       setTimerStart(false);
       setGameStarted(false);
       setIsGameWon(true);
-      localStorage.setItem("gameWon", isGameWon);
+      localStorage.setItem("gameWon", true);
       localStorage.setItem("playerTime", timer.seconds);
       console.log("grats gamer");
     }
