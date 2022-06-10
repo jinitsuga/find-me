@@ -124,7 +124,9 @@ export default function App() {
       console.log("grats gamer");
     }
   }
-
+  function savePlayerTime() {
+    console.log(timer.seconds);
+  }
   updateTimer();
 
   return (
@@ -137,6 +139,8 @@ export default function App() {
         gameStarted={gameStarted}
       />
       <RouteSwitch
+        timer={timer}
+        savePlayerTime={savePlayerTime}
         startClock={startClock}
         coords={coords}
         selector={<Selector coords={coords} />}

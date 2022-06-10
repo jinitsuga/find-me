@@ -1,0 +1,31 @@
+.text {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 35%;
+  background-color: rgba(61, 61, 82, 0.849);
+  padding: 25px;
+  border-radius: 2px;
+}
+.about-wrap {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.contact {
+  background-color: rgba(61, 61, 82, 0.849);
+  border-radius: 3px;
+}
+ul {
+  list-style: none;
+
+  padding: 25px;
+}
+.gh-link {
+  color: aqua;
+}
+.gh-link:hover {
+  color: aliceblue;
+}

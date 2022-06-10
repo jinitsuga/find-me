@@ -1,6 +1,7 @@
 import { clear } from "@testing-library/user-event/dist/clear";
 import React from "react";
 import "./Clock.css";
+import "./Nav.css";
 export default function Clock(props) {
   const minutes = Math.floor(props.timer.seconds / 60);
   const seconds = props.timer.seconds % 60;

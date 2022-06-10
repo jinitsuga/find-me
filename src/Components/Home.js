@@ -20,7 +20,7 @@ export default function Home(props) {
           </Link>
         </div>
       ) : (
-        <Registration />
+        <Registration timer={props.timer} />
       )}
     </section>
   );

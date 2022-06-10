@@ -5,4 +5,10 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  grid-area: "timer";
+}
+@media only screen and (max-width: 950px) {
+  .clock-container {
+    order: 4;
+  }
 }

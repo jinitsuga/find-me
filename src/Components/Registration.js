@@ -1,7 +1,7 @@
 import React from "react";
 import "./Registration.css";
 
-export default function Registration() {
+export default function Registration(props) {
   const [playerName, setPlayerName] = React.useState("");
 
   const seconds = localStorage.getItem("playerTime");
@@ -21,6 +21,14 @@ export default function Registration() {
         placeholder="Enter your name"
         onChange={handleChange}
       ></input>
+      <button
+        type="button"
+        onClick={() => {
+          console.log(props.timer.seconds, playerName);
+        }}
+      >
+        Save time{" "}
+      </button>
     </form>
   );
 }
