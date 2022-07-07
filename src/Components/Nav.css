@@ -2,7 +2,7 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
-  height: auto;
+  height: 150px;
   background-color: rgba(61, 61, 82, 0.849);
   color: white;
   font-family: "Poppins", sans-serif;
