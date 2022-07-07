@@ -11,7 +11,13 @@ export default function RouteSwitch(props) {
         {/* Any route leads to Home if the clock hasn't started (to prevent looking at img before timer starts) */}
         <Route
           path="/"
-          element={<Home startClock={props.startClock} timer={props.timer} />}
+          element={
+            <Home
+              startClock={props.startClock}
+              timer={props.timer}
+              addToLeaderboards={props.addToLeaderboards}
+            />
+          }
         />
         {props.timerStart && (
           <Route

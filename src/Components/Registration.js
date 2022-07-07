@@ -24,6 +24,7 @@ export default function Registration(props) {
       <button
         type="button"
         onClick={() => {
+          props.addToLeaderboards(playerName, props.timer.seconds);
           console.log(props.timer.seconds, playerName);
         }}
       >

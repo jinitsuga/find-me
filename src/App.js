@@ -24,6 +24,13 @@ export default function App() {
   // Firebase interaction -  extracting the list of items to find and their coordinates on the image.
   // only on app start through useEffect hook
 
+  async function addToLeaderboards(name, time) {
+    const docRef = await addDoc(collection(database, "leaderboards"), {
+      name: name,
+      time: time,
+    });
+  }
+
   async function getItems(database) {
     const listOfItems = collection(database, "items");
     const itemsSnap = await getDocs(listOfItems);
@@ -140,6 +147,7 @@ export default function App() {
       />
       <RouteSwitch
         timer={timer}
+        addToLeaderboards={addToLeaderboards}
         savePlayerTime={savePlayerTime}
         startClock={startClock}
         coords={coords}
