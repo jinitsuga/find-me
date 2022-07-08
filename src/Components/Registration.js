@@ -3,6 +3,7 @@ import "./Registration.css";
 
 export default function Registration(props) {
   const [playerName, setPlayerName] = React.useState("");
+  const [isFormHidden, setIsFormHidden] = React.useState("false");
 
   const seconds = localStorage.getItem("playerTime");
 
@@ -10,7 +11,10 @@ export default function Registration(props) {
     setPlayerName(event.target.value);
   }
   return (
-    <form>
+    <form
+      className="regist-form"
+      style={!isFormHidden ? { display: "none" } : { display: "flex" }}
+    >
       <h3>Congrats gamer!</h3>
       <p>Save your time and check the leaderboards!</p>{" "}
       <span className="time">
@@ -30,6 +34,7 @@ export default function Registration(props) {
         onClick={() => {
           if (playerName.length < 2 || playerName.length > 16) return;
           props.addToLeaderboards(playerName, props.timer.seconds);
+          setIsFormHidden(!isFormHidden);
           console.log(props.timer.seconds, playerName);
         }}
       >
