@@ -16,6 +16,7 @@ export default function RouteSwitch(props) {
               startClock={props.startClock}
               timer={props.timer}
               addToLeaderboards={props.addToLeaderboards}
+              getLeaderboard={props.getLeaderboard}
             />
           }
         />

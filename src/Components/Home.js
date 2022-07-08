@@ -23,6 +23,7 @@ export default function Home(props) {
         <Registration
           timer={props.timer}
           addToLeaderboards={props.addToLeaderboards}
+          getLeaderboard={props.getLeaderboard}
         />
       )}
     </section>

@@ -23,7 +23,6 @@ export default function Clock(props) {
   function updateSeconds() {
     if (localStorage.getItem("gameWon") === "true") {
       clearInterval(clockInterval);
-      console.log("zulul");
     } else {
       props.setTimer((oldTimer) => {
         return { ...oldTimer, seconds: oldTimer.seconds + 1 };

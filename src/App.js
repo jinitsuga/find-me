@@ -2,7 +2,13 @@ import React from "react";
 import RouteSwitch from "./Components/RouteSwitch";
 import Nav from "./Components/Nav.js";
 import Selector from "./Components/Selector";
-import { getFirestore, collection, addDoc, getDocs } from "firebase/firestore";
+import {
+  getFirestore,
+  collection,
+  addDoc,
+  getDocs,
+  getDoc,
+} from "firebase/firestore";
 import { initializeApp } from "firebase/app";
 import firebaseConfig from "./Components/firebase-config";
 import { calculateNewValue } from "@testing-library/user-event/dist/utils";
@@ -24,6 +30,7 @@ export default function App() {
   // Firebase interaction -  extracting the list of items to find and their coordinates on the image.
   // only on app start through useEffect hook
 
+  // Adding player name + player time to leaderboard
   async function addToLeaderboards(name, time) {
     const docRef = await addDoc(collection(database, "leaderboards"), {
       name: name,
@@ -31,6 +38,14 @@ export default function App() {
     });
   }
 
+  // Getting the top 20 from the leaderboards
+  async function getLeaderboard() {
+    const query = await getDocs(collection(database, "leaderboards"));
+    const leadersList = query.docs.map((doc) => doc.data());
+    return leadersList;
+  }
+
+  // Getting the items to find from the DB
   async function getItems(database) {
     const listOfItems = collection(database, "items");
     const itemsSnap = await getDocs(listOfItems);
@@ -128,7 +143,6 @@ export default function App() {
       setIsGameWon(true);
       localStorage.setItem("gameWon", true);
       localStorage.setItem("playerTime", timer.seconds);
-      console.log("grats gamer");
     }
   }
   function savePlayerTime() {
@@ -161,6 +175,7 @@ export default function App() {
         setTimerStart={setTimerStart}
         timerStart={timerStart}
         checkForWin={checkForWin}
+        getLeaderboard={getLeaderboard}
       />
     </div>
   );

@@ -23,3 +23,12 @@ form > button {
   font-size: 20px;
   font-weight: 500;
 }
+.error-msg {
+  display: none;
+  font-size: 16px;
+  color: rgb(184, 119, 119);
+  margin-bottom: 15px;
+}
+.player-name:invalid ~ .error-msg {
+  display: block;
+}
