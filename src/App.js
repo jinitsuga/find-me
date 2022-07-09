@@ -27,6 +27,8 @@ export default function App() {
     mins: 0,
     seconds: 0,
   });
+  const [didPlayerRegister, setDidPlayerRegister] = React.useState(false);
+
   // Firebase interaction -  extracting the list of items to find and their coordinates on the image.
   // only on app start through useEffect hook
 
@@ -60,8 +62,10 @@ export default function App() {
   // Saving game status in localStorage to avoid resets through page refresh
 
   // COMMENT OUT THE LINE BELOW TO PREVENT REFRESH RESTART + add condition to timer start btn in Home component
-  localStorage.setItem("gameWon", isGameWon);
 
+  function registerPlayer() {
+    setDidPlayerRegister(true);
+  }
   function logItem(e) {
     const item = uniques.find(
       (element) => element.name === e.target.textContent
@@ -176,6 +180,8 @@ export default function App() {
         timerStart={timerStart}
         checkForWin={checkForWin}
         getLeaderboard={getLeaderboard}
+        didPlayerRegister={didPlayerRegister}
+        registerPlayer={registerPlayer}
       />
     </div>
   );

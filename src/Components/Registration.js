@@ -7,7 +7,7 @@ export default function Registration(props) {
   const [isFormHidden, setIsFormHidden] = React.useState("false");
 
   const seconds = localStorage.getItem("playerTime");
-
+  function registerPlayer() {}
   function handleChange(event) {
     setPlayerName(event.target.value);
   }
@@ -23,6 +23,9 @@ export default function Registration(props) {
           Your time: {Math.floor(seconds / 60)}m {Math.floor(seconds % 60)}s{" "}
         </span>
         <input
+          style={
+            props.didPlayerRegister ? { display: "none" } : { display: "block" }
+          }
           className="player-name"
           placeholder="Enter your name"
           onChange={handleChange}
@@ -36,6 +39,7 @@ export default function Registration(props) {
           onClick={() => {
             if (playerName.length < 2 || playerName.length > 16) return;
             props.addToLeaderboards(playerName, props.timer.seconds);
+            props.registerPlayer();
             setIsFormHidden(!isFormHidden);
           }}
         >

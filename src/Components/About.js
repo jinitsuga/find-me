@@ -7,7 +7,7 @@ export default function About() {
         <p className="text">
           Hi! I'm Agu, a junior web developer diving into the development world
           and loving the journey so far. If you'd like to connect, you can find
-          me on Discord (Jin#6139) or these links! :)
+          me on Discord (Jin#6139) or in the links below :)
         </p>
         <div className="contact">
           <ul className="contact-list">

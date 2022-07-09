@@ -18,6 +18,8 @@ export default function RouteSwitch(props) {
               timer={props.timer}
               addToLeaderboards={props.addToLeaderboards}
               getLeaderboard={props.getLeaderboard}
+              didPlayerRegister={props.didPlayerRegister}
+              registerPlayer={props.registerPlayer}
             />
           }
         />

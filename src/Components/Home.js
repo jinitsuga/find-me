@@ -24,6 +24,8 @@ export default function Home(props) {
           timer={props.timer}
           addToLeaderboards={props.addToLeaderboards}
           getLeaderboard={props.getLeaderboard}
+          didPlayerRegister={props.didPlayerRegister}
+          registerPlayer={props.registerPlayer}
         />
       )}
     </section>
