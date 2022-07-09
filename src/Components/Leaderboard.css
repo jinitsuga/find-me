@@ -3,4 +3,19 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background-color: rgba(61, 61, 82, 0.849);
+  padding: 25px;
+  border-radius: 6px;
+}
+.leaderboard {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.leader {
+  margin: 5px;
+}
+.rank {
+  color: aqua;
 }

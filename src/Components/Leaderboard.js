@@ -7,15 +7,30 @@ export default function Leaderboard(props) {
     props.getLeaderboard().then(setLeaders);
   }, []);
 
+  // time formatting pending and some style on these spans
   const sortedLeaders = leaders.sort((a, b) => a.time - b.time);
-  const leadersList = sortedLeaders.map((item) => (
-    <span className="player-info">
-      Player: {item.name} Time: {item.time}
-    </span>
-  ));
-  console.log(sortedLeaders);
+  let topTwenty = [];
+
+  if (sortedLeaders.length >= 20) {
+    topTwenty = sortedLeaders.slice(0, 20);
+  } else {
+    topTwenty = sortedLeaders;
+  }
+
+  const leadersList = topTwenty.map((leader) => {
+    const minutes = Math.floor(leader.time / 60);
+    const seconds = leader.time % 60;
+    return (
+      <div className="leader" key={topTwenty.indexOf(leader)}>
+        <span className="rank"> {topTwenty.indexOf(leader) + 1}. </span>{" "}
+        {leader.name} {minutes}m {seconds}s
+      </div>
+    );
+  });
+
   return (
     <div className="leaderboard">
+      <h3> Showing top 20</h3>
       <div className="leaders-container">{leadersList}</div>
     </div>
   );
