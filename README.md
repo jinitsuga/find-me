@@ -1,70 +1,28 @@
-# Getting Started with Create React App
+## Simple 'Hidden Objects' game around Path of Exile's unique items.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-## Available Scripts
+Find the listed items in an image with many of them, similar to finding Waldo's games.
+Path of Exile is an ARPG game where there are thousands of unique items that you can collect, and only a small number of them are shown in the image used for this game. It's obviously more difficult to engage if you're not familiar with the game itself, but you can always google the name of the items you need to find and google them to have an image/icon for reference and try to find them in the picture!
 
 In the project directory, you can run:
 
 ### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Use this command to run the project locally if you want to do that for some reason. Feel free to tinker with it as well if you'd like!
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+**Challenges and discoveries**
 
-### `npm test`
+My first real challenge while building this project was definitely how to tackle navigating an image and letting the app know where the mouse is on that image. After
+some research, I found multiple ways of handling this, and one of them seemed the most intuitive one, which was through the nativeEvent object generated from clicking the image element. Extracting the X and Y positions of the mouse click, then transforming these coordinates into the percent of the image's width and height, with the help of 'event.target.width' and height. This allowed for the coordinates to always be the same regardless of screen size, as long as the image maintains its aspect ratio.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+The second challenging aspect was around the 'clock' component, and all of its control flow on when to pause it, save time, keep the clock running, etc. Supporting myself on the localStorage for this was quite helpful, though it could be tweaked to make it so the time stays saved in localStorage to keep people from 'restarting' the timer by refreshing the page. Since the app is in just 'play for fun' mode I haven't done that just yet.
 
-### `npm run build`
+Something else that took some time and energy was the conditional rendering/styling of a bunch of elements, such as giving the items listed in teal to find a line-through when they've been found, showing an error message if the form to register the player on the leaderboards isn't validated, or knowing what to render depending on the state of the game (hasn't started, it's in process or it's been won). Achieved most of these by using styles in the React code and combining them with the conditions in Javascript right there, except the form validation one which was done through CSS, using the 'element:invalid' property.
+I can confidently say that conditionally rendering and styling will be far easier for me in the future after this project!
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Another thing that was fairly challenging was the chaining of props from a component to sometimes 2 or 3 components down the line. This is something that is better accomplished by using Redux (I think) but it's something I haven't learned yet, though it's probably the very next thing I'll be studying. I still made it work, obviously through a much more tedious and time-consuming approach and definitely not best-practice.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+**Things I want to improve on/study soon**
+This is the first project where I implemented any sort of backend, and I did it through Firebase, which was fairly simple but still took a certain amount of time and exploration. Database/backend is something that I definitely want to get into more, at the very least so I need to invest less time on it whenever I want to implement something as simple as I did here, and the next section in The Odin Project is all about the backend, so I'll be headed in that direction regardless!
+Aside from that I'll soon be getting into these React topics:
+-Redux
+-Styled components

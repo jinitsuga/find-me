@@ -56,6 +56,7 @@ export default function App() {
   }
   React.useEffect(() => {
     getItems(database).then(setUniques);
+    localStorage.setItem("gameWon", false);
   }, []);
 
   // ---------------- !! ----------------------
