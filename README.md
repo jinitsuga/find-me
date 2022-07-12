@@ -3,7 +3,7 @@
 Find the listed items in an image with many of them, similar to finding Waldo's games.
 Path of Exile is an ARPG game where there are thousands of unique items that you can collect, and only a small number of them are shown in the image used for this game. It's obviously more difficult to engage if you're not familiar with the game itself, but you can always google the name of the items you need to find and google them to have an image/icon for reference and try to find them in the picture!
 
-In the project directory, you can run:
+In the project directory, run this command to start the app locally:
 
 ### `npm start`
 
