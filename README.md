@@ -19,10 +19,11 @@ The second challenging aspect was around the 'clock' component, and all of its c
 Something else that took some time and energy was the conditional rendering/styling of a bunch of elements, such as giving the items listed in teal to find a line-through when they've been found, showing an error message if the form to register the player on the leaderboards isn't validated, or knowing what to render depending on the state of the game (hasn't started, it's in process or it's been won). Achieved most of these by using styles in the React code and combining them with the conditions in Javascript right there, except the form validation one which was done through CSS, using the 'element:invalid' property.
 I can confidently say that conditionally rendering and styling will be far easier for me in the future after this project!
 
-Another thing that was fairly challenging was the chaining of props from a component to sometimes 2 or 3 components down the line. This is something that is better accomplished by using Redux (I think) but it's something I haven't learned yet, though it's probably the very next thing I'll be studying. I still made it work, obviously through a much more tedious and time-consuming approach and definitely not best-practice.
+Another thing that was fairly challenging was the chaining of props from a component to sometimes 2 or 3 components down the line. This is something that is better accomplished by using Redux (I think) and the Context API, but it's things I'm yet to learn, though it's probably the very next thing I'll be studying. I still made it work, obviously through a much more tedious and time-consuming approach and definitely not best-practice.
 
 **Things I want to improve on/study soon**
 This is the first project where I implemented any sort of backend, and I did it through Firebase, which was fairly simple but still took a certain amount of time and exploration. Database/backend is something that I definitely want to get into more, at the very least so I need to invest less time on it whenever I want to implement something as simple as I did here, and the next section in The Odin Project is all about the backend, so I'll be headed in that direction regardless!
 Aside from that I'll soon be getting into these React topics:
 -Redux
+-Context API
 -Styled components
