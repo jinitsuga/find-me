@@ -4,6 +4,7 @@ import "./Game.css";
 import poeitems from "./images/poeitems.jpg";
 import Selector from "./Selector";
 
+// "Descomentar" el selector para deployearlo de nuevo (solo checkeando coords para agregar items a la db)
 export default function Game(props) {
   return (
     <main className="main-section">

@@ -47,12 +47,26 @@ export default function App() {
     return leadersList;
   }
 
+  // random number
+  function getRandomInt(max) {
+    return Math.floor(Math.random() * max);
+  }
+
   // Getting the items to find from the DB
   async function getItems(database) {
     const listOfItems = collection(database, "items");
     const itemsSnap = await getDocs(listOfItems);
     const itemList = itemsSnap.docs.map((doc) => doc.data());
-    return itemList;
+
+    let randomizedItems = [];
+
+    for (let i = 0; i < 3; i++) {
+      const random = getRandomInt(itemList.length);
+      randomizedItems.push(itemList[random]);
+      itemList.splice(random, 1);
+    }
+
+    return randomizedItems;
   }
   React.useEffect(() => {
     getItems(database).then(setUniques);
@@ -112,7 +126,9 @@ export default function App() {
     const yCoord = e.nativeEvent.offsetY;
 
     const xPercent = Math.floor((xCoord * 100) / imgWidth);
+
     const yPercent = Math.floor((yCoord * 100) / imgHeight);
+
     setPercentCoords({ x: xPercent, y: yPercent });
   }
 
