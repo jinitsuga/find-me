@@ -1,7 +1,7 @@
-import { initializeApp } from "firebase/app";
+
 
 const firebaseConfig = {
-  apiKey: "AIzaSyAAXFOjIpexXtykdcIMVWc3GGXhPBPhnNw",
+  apiKey: process.env.REACT_APP_FIREBASE,
 
   authDomain: "poe-unique-finder.firebaseapp.com",
 

@@ -3,8 +3,13 @@ import "./Leaderboard.css";
 export default function Leaderboard(props) {
   const [leaders, setLeaders] = React.useState([]);
 
+ 
+
   React.useEffect(() => {
-    props.getLeaderboard().then(setLeaders);
+    const properties = {...props}
+    properties.getLeaderboard().then(setLeaders);
+      
+  // eslint-disable-next-line
   }, []);
 
   // time formatting pending and some style on these spans

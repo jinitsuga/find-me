@@ -1,4 +1,3 @@
-import { clear } from "@testing-library/user-event/dist/clear";
 import React from "react";
 import "./Clock.css";
 import "./Nav.css";
@@ -15,6 +14,7 @@ export default function Clock(props) {
       localStorage.getItem("gameWon") === "false"
     ) {
       if (!clockInterval) {
+        // eslint-disable-next-line
         clockInterval = setInterval(updateSeconds, 1000);
       }
     }
@@ -30,11 +30,11 @@ export default function Clock(props) {
     }
   }
 
-  function updateMinutes() {
-    props.setTimer((oldTimer) => {
-      return { ...oldTimer, mins: oldTimer.mins + 1 };
-    });
-  }
+  // function updateMinutes() {
+  //   props.setTimer((oldTimer) => {
+  //     return { ...oldTimer, mins: oldTimer.mins + 1 };
+  //   });
+  // }
 
   return (
     <div className="clock-container">

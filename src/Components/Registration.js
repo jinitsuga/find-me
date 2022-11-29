@@ -7,7 +7,7 @@ export default function Registration(props) {
   const [isFormHidden, setIsFormHidden] = React.useState("false");
 
   const seconds = localStorage.getItem("playerTime");
-  function registerPlayer() {}
+ 
   function handleChange(event) {
     setPlayerName(event.target.value);
   }

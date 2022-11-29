@@ -12,9 +12,12 @@ export default function Selector(props) {
     top: props.coords.y + "px",
     left: props.coords.x + "px",
   };
+
   React.useEffect(() => {
     props.checkForWin();
+      // eslint-disable-next-line
   }, [props.uniques]);
+
   return (
     <div className="selector" style={selectorStyle}>
       <ul className="select-list">

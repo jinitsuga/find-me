@@ -1,9 +1,9 @@
 import React from "react";
-import { Navigate, BrowserRouter, Routes, Route } from "react-router-dom";
+import { Navigate, Routes, Route } from "react-router-dom";
 import Game from "./Game";
 import About from "./About";
 import Home from "./Home";
-import Leaderboard from "./Leaderboard";
+
 
 export default function RouteSwitch(props) {
   return (
