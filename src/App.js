@@ -21,6 +21,7 @@ export default function App() {
   const [showSelector, setShowSelector] = React.useState(false);
   const [timerStart, setTimerStart] = React.useState(false);
   const [gameStarted, setGameStarted] = React.useState(false);
+  // eslint-disable-next-line
   const [isGameWon, setIsGameWon] = React.useState(false);
   const [timer, setTimer] = React.useState({
     mins: 0,
@@ -28,11 +29,11 @@ export default function App() {
   });
   const [didPlayerRegister, setDidPlayerRegister] = React.useState(false);
 
-  // Firebase interaction -  extracting the list of items to find and their coordinates on the image.
-  // only on app start through useEffect hook
+ 
 
   // Adding player name + player time to leaderboard
   async function addToLeaderboards(name, time) {
+    // eslint-disable-next-line
     const docRef = await addDoc(collection(database, "leaderboards"), {
       name: name,
       time: time,
@@ -92,7 +93,6 @@ export default function App() {
       percentCoords.y <= item.yMax &&
       percentCoords.y >= item.yMin
     ) {
-      // Changes item's "found" prop to 'true'
       setItemToFound(item);
     } else {
       console.log("try again lol");
@@ -132,7 +132,7 @@ export default function App() {
     setPercentCoords({ x: xPercent, y: yPercent });
   }
 
-  // clock functionality
+ 
   function startClock() {
     setTimerStart(true);
   }

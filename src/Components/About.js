@@ -5,7 +5,7 @@ export default function About() {
     <section>
       <div className="about-wrap">
         <p className="text">
-          Hi! I'm Agu, a junior web developer diving into the development world
+          Hello! I'm Agu, a junior web developer diving into the development world
           and loving the journey so far. If you'd like to connect, you can find
           me on Discord (Jin#6139) or in the links below :)
         </p>
