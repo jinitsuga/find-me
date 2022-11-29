@@ -7,11 +7,10 @@ import {
   collection,
   addDoc,
   getDocs,
-  getDoc,
+ 
 } from "firebase/firestore";
 import { initializeApp } from "firebase/app";
 import firebaseConfig from "./Components/firebase-config";
-import { calculateNewValue } from "@testing-library/user-event/dist/utils";
 const app = initializeApp(firebaseConfig);
 const database = getFirestore(app);
 
@@ -53,22 +52,23 @@ export default function App() {
   }
 
   // Getting the items to find from the DB
-  async function getItems(database) {
-    const listOfItems = collection(database, "items");
-    const itemsSnap = await getDocs(listOfItems);
-    const itemList = itemsSnap.docs.map((doc) => doc.data());
-
-    let randomizedItems = [];
-
-    for (let i = 0; i < 3; i++) {
-      const random = getRandomInt(itemList.length);
-      randomizedItems.push(itemList[random]);
-      itemList.splice(random, 1);
-    }
-
-    return randomizedItems;
-  }
+  
   React.useEffect(() => {
+    async function getItems(database) {
+      const listOfItems = collection(database, "items");
+      const itemsSnap = await getDocs(listOfItems);
+      const itemList = itemsSnap.docs.map((doc) => doc.data());
+  
+      let randomizedItems = [];
+  
+      for (let i = 0; i < 3; i++) {
+        const random = getRandomInt(itemList.length);
+        randomizedItems.push(itemList[random]);
+        itemList.splice(random, 1);
+      }
+  
+      return randomizedItems;
+    }
     getItems(database).then(setUniques);
     localStorage.setItem("gameWon", false);
   }, []);
@@ -136,9 +136,7 @@ export default function App() {
   function startClock() {
     setTimerStart(true);
   }
-  function stopTimer() {
-    setTimerStart(false);
-  }
+ 
 
   // Local storage interaction -- maintaing timer on page refresh
   function updateTimer() {
@@ -150,15 +148,11 @@ export default function App() {
     });
   }, []);
 
-  // React.useEffect(() => {
-  //   if (Number(localStorage.getItem("time")) > 0) {
-  //     setGameStarted(true);
-  //   }
-  // });
+
   function checkForWin() {
-    if (uniques.every((item) => item.found == true)) {
+    if (uniques.every((item) => item.found === true)) {
       localStorage.setItem("time", timer.seconds);
-      //setTimer({ minutes: 0, seconds: 0 });
+     
       setTimerStart(false);
       setGameStarted(false);
       setIsGameWon(true);
