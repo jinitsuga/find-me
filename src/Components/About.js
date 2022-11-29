@@ -12,7 +12,7 @@ export default function About() {
         <div className="contact">
           <ul className="contact-list">
             <li>
-              <a className="linkedIn-link" href="">
+              <a className="linkedIn-link" href="https://www.linkedin.com/in/agu-ib%C3%A1%C3%B1ez-30069a240/">
                 <i className="devicon-linkedin-plain"></i>
               </a>
             </li>
